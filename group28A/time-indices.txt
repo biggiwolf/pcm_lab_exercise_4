@@ -1,8 +1,0 @@
-segment-0 time: 0.08427609
-
-segment-1 time: 2.0641923
-
-segment-2 time: 4.0341935
-
-segment-3 time: 6.0341935
-
