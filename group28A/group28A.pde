@@ -13,25 +13,22 @@ int histogramStoredFrames;
 PImage image;
 
 //TODO adapt when we have the actual video
-int thresholdSimpleDifferences = 20000;
-int thresholdSquaredDifferences = 3;
+int thresholdSimpleDifferences = 50000;
+int thresholdSquaredDifferences = 5000;
 
 //first dimension are color channels, second the actual histogram per channel
 int[][] histogramCurrent;
 int[][] histogramLast;
 
-//TODO change those two parametres
-int imageWidth = 320;
-int imageHeight = 240;
+int imageWidth = 960;
+int imageHeight = 540;
 
 void setup(){
   strobeCurrent = 0;
   strobeStoredFrames = 0;
   histogramStoredFrames = 0;
-  //TODO exchange
-  size(320,240);
-  //TODO exchange
-  movie = new Movie(this, "PCMLab9.mov");
+  size(960,540);
+  movie = new Movie(this, "PCMLab10.mov");
   movie.play();
   output1 = createWriter("1_time-indices.txt");
   output2 = createWriter("2_time-indices.txt");

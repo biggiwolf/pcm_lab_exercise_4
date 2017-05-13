@@ -1,54 +1,40 @@
-segment-0 time: 0.16423035
+segment-0 time: 0.37
 
-segment-1 time: 0.3842634
+segment-1 time: 4.22
 
-segment-2 time: 0.5143002
+segment-2 time: 8.25
 
-segment-3 time: 0.8542011
+segment-3 time: 8.41
 
-segment-4 time: 1.4442608
+segment-4 time: 8.68
 
-segment-5 time: 1.7842889
+segment-5 time: 9.15
 
-segment-6 time: 1.9042838
+segment-6 time: 9.3
 
-segment-7 time: 2.64421
+segment-7 time: 9.47
 
-segment-8 time: 2.774247
+segment-8 time: 9.66
 
-segment-9 time: 2.9141984
+segment-9 time: 9.87
 
-segment-10 time: 2.974196
+segment-10 time: 10.37
 
-segment-11 time: 3.0442355
+segment-11 time: 10.5
 
-segment-12 time: 3.324266
+segment-12 time: 10.65
 
-segment-13 time: 3.3842635
+segment-13 time: 11.38
 
-segment-14 time: 3.5242152
+segment-14 time: 12.27
 
-segment-15 time: 3.64421
+segment-15 time: 12.73
 
-segment-16 time: 3.9141984
+segment-16 time: 14.22
 
-segment-17 time: 4.114275
+segment-17 time: 16.18
 
-segment-18 time: 4.304182
+segment-18 time: 17.16
 
-segment-19 time: 4.4442606
-
-segment-20 time: 4.524215
-
-segment-21 time: 4.584213
-
-segment-22 time: 5.104233
-
-segment-23 time: 5.184187
-
-segment-24 time: 5.3643064
-
-segment-25 time: 5.64421
-
-segment-26 time: 6.2542267
+segment-19 time: 17.79
 
