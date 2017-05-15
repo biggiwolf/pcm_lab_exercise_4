@@ -3,18 +3,27 @@ import processing.video.*;
 Movie movie;
 PrintWriter output1;
 PrintWriter output2;
+PrintWriter output3;
+PrintWriter output4;
 
 
 int strobeCurrent;
 int strobeInterval = 2;
 int strobeStoredFrames;
 int histogramStoredFrames;
+int twinStoredFrames;
+int StoredFrames;
 
 PImage image;
 
 //TODO adapt when we have the actual video
 int thresholdSimpleDifferences = 50000;
 int thresholdSquaredDifferences = 5000;
+int ts = 3000;
+int tb = 5000;
+int cumulativeDiff = 0;
+int differenceInFrame = 0;
+int differenceInFrameAux = 0;
 
 //first dimension are color channels, second the actual histogram per channel
 int[][] histogramCurrent;
@@ -27,11 +36,15 @@ void setup(){
   strobeCurrent = 0;
   strobeStoredFrames = 0;
   histogramStoredFrames = 0;
+  twinStoredFrames = 0;
+  StoredFrames = 0;
   size(960,540);
   movie = new Movie(this, "PCMLab10.mov");
   movie.play();
   output1 = createWriter("1_time-indices.txt");
   output2 = createWriter("2_time-indices.txt");
+  output3 = createWriter("3_time-indices.txt");
+  output4 = createWriter("4_time-indices.txt");
 }
 
 void draw(){
@@ -49,7 +62,12 @@ void draw(){
   if(histogramLast != null && histogramCurrent != null){
     int differenceHistograms = calculateDifferenceHistograms();
     //use the print line to determine new threshold
-    println("difference: " + differenceHistograms);  
+    //println("difference: " + differenceHistograms);  
+    
+    twinComparison(differenceHistograms);
+      
+    output4.println(StoredFrames + " | " + differenceHistograms + " | " + ts + " | " + tb + "\n");
+    StoredFrames++;
     
     //cut detected
     if(differenceHistograms > thresholdSquaredDifferences){
@@ -72,6 +90,10 @@ void keyPressed(){
   output1.close();
   output2.flush();
   output2.close();
+  output3.flush();
+  output3.close();
+  output4.flush();
+  output4.close();
   exit();
 }
 
@@ -149,4 +171,35 @@ int calculateDifferenceHistograms(){
   int differenceSum = differenceRed + differenceGreen + differenceBlue;
 
   return differenceSum;
+}
+
+void twinComparison(int d)
+{  
+  if(d > ts)
+  {      
+    cumulativeDiff = d - differenceInFrame;
+    
+    //keeping the difference of the possible frame
+    if(differenceInFrameAux == 0){
+      differenceInFrame = d;
+      differenceInFrameAux = 1;
+    } 
+    
+  }
+  if(d < ts && differenceInFrameAux == 1)
+  {
+    if(cumulativeDiff > tb)
+    {
+      String filename = "3_frames/segment-" + twinStoredFrames + ".png";
+      saveFrame(filename);
+      output3.println("segment-" + twinStoredFrames + " time: " + movie.time() + "\n");
+      twinStoredFrames++;
+    }
+  }
+  
+  //semi reseting the difference of the possible frame
+  if(d < differenceInFrame){
+    differenceInFrameAux = 0;
+    differenceInFrame = 0;
+  }
 }
